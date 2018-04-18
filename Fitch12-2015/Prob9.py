@@ -54,6 +54,7 @@ def main():
                     colBase = 0
         if not printed:
             print("Given sudoku grid is valid")
+        input()
 
 
 if __name__ == "__main__": main()
