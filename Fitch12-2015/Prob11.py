@@ -27,4 +27,19 @@ def main():
                     alreadySeen.append(number)
                 player = "A"
 
+def simulate(player, number, alreadySeen):
+    hasWon = False
+    total = 0
+    while not hasWon:
+        if player == "A":
+            if number % 2 == 1:
+                number -= 6
+                total += simulate("B", number, alreadySeen)
+            if number < 12:
+                hasWon = True
+                total += 1
+        else:
+    return total
+
+
 if __name__ == "__main__": main()
