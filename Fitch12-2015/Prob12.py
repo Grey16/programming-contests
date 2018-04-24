@@ -1,5 +1,5 @@
 def main():
-    for i in range(1):
+    for i in range(4):
         matrix = [[0] * 9 for j in range(9)]
         for j in range(9):
             matrix[j] = list(input())
@@ -9,7 +9,14 @@ def main():
         if isBroken(matrix):
             print("already broken")
         else:
-            print(solve(matrix))
+            result = solve(matrix)
+            if result == 1:
+                print("unique solution")
+            elif result == -1:
+                print("no solution")
+            else:
+                print("more than one solution")
+        input()
 
 def solve(matrix):
     result = 0
@@ -23,20 +30,15 @@ def solve(matrix):
                 if matrix[row][col] == 0:
                     for i in range(9):
                         matrix[row][col] = i + 1
-                        if isFinished(matrix) and not isBroken(matrix):
-                            for row in matrix:
-                                print(row)
-                            return 1
-                        if solve(matrix) >= 1:
-                            result += 1
-                        if matrix[row][col] == 9:
+                        temp = solve(matrix)
+                        if temp < 0:
+                            if matrix[row][col] == 9 and result == 0:
+                                matrix[row][col] = 0
+                                return -1
                             matrix[row][col] = 0
-                            # print("Ran out of options")
-                            # print("Row: " + str(row) + " Col: " + str(col))
-                            if result == 0:
-                                return 0
-                        matrix[row][col] = 0
-        return result
+                        else:
+                            result += temp
+                    return result
 
 def isFinished(matrix):
     for i in range(9):
