@@ -10,6 +10,19 @@ def main():
             s = input()
 
         for row in matrix:
-                print(row)
+            print(row)
+
+        routes = list()
+        for r in range(len(matrix)):
+            currRow = list()
+            for c in range(len(matrix[0])):
+                if matrix[r][c] == -1:
+                    currRow.append(0)
+                else:
+                    currRow.append(1)
+            routes.append(currRow)
+
+        for row in routes:
+            print(row)
 
 if __name__ == "__main__": main()
