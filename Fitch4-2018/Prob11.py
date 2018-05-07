@@ -34,6 +34,10 @@ def main():
         if printed == False:
             print(-1)
 
+def findAllPaths(matrix, dep, dest):
+    visited = [False] * len(matrix)
+    paths = list()
+
 def multMatrices(mat1, mat2):
     output = list()
     for i in range(len(mat1)):
