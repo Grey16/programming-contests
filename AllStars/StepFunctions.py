@@ -59,11 +59,26 @@ def main():
         for j in range(len(xVals)):
             for seg in graph:
                 if seg[2:] == xVals[j]:
-                    if j == 0:
-                        seg[1] = " " + seg[1]
+                    if "<" in seg[1]:
+                        if j == 0:
+                            seg[1] = " " + seg[1]
+                        else:
+                            seg[1] = (" " * currLen) + seg[1]
+                        currLen = len(seg[1]) - 1
+                    elif seg[1] == "@":
+                        if j == 0:
+                            seg[1] = " " + seg[1]
+                        else:
+                            seg[1] = (" " * currLen) + seg[1]
+                        currLen = len(seg[1]) - 1
                     else:
-                        seg[1] = (" " * currLen) + seg[1]
-                    currLen = len(seg[1]) - 1
+                        if j == 0:
+                            seg[1] = " " + seg[1]
+                        else:
+                            seg[1] = (" " * currLen) + seg[1]
+                        currLen = len(seg[1]) - 1
+                    seg.append(True)
+
 
         for seg in graph:
             # prints y-value
